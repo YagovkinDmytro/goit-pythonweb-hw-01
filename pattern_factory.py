@@ -1,4 +1,11 @@
 from abc import ABC, abstractmethod
+import logging
+import logging.config
+from logging_config import LOGGING_CONFIG
+
+
+logging.config.dictConfig(LOGGING_CONFIG)
+logger = logging.getLogger('solid')
 
 class Vehicle(ABC):
     @abstractmethod
@@ -34,7 +41,7 @@ class Car(Vehicle):
         self.model = model
 
     def start_engine(self):
-        print(f"{self.make} {self.model}: Двигун запущено")
+        logger.debug(f"{self.make} {self.model}: Engine started")
 
 class Motorcycle(Vehicle):
     def __init__(self, make, model):
@@ -42,7 +49,7 @@ class Motorcycle(Vehicle):
         self.model = model
 
     def start_engine(self):
-        print(f"{self.make} {self.model}: Мотор заведено")
+        logger.debug(f"{self.make} {self.model}: Engine started")
 
 
 if __name__ == "__main__":

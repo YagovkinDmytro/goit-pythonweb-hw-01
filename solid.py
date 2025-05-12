@@ -1,4 +1,13 @@
 from abc import ABC, abstractmethod
+import logging
+
+logger = logging.getLogger('solid')
+logger.setLevel(logging.DEBUG)
+cons_log = logging.StreamHandler()
+cons_log.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+cons_log.setFormatter(formatter)
+logger.addHandler(cons_log)
 
 class Book:
     def __init__(self, title, author, year):
@@ -34,7 +43,7 @@ class Library(LibraryInterface):
 
     def show_books(self):
         for book in self.books:
-            print(f'Title: {book.title}, Author: {book.author}, Year: {book.year}')
+            logger.debug(f'Title: {book.title}, Author: {book.author}, Year: {book.year}')
 
 class LibraryManager:
     def __init__(self, library: LibraryInterface):
@@ -50,6 +59,7 @@ class LibraryManager:
         self.library.show_books()
    
 def main():
+
     library = Library()
     manager = LibraryManager(library)
 
@@ -70,7 +80,7 @@ def main():
             case "exit":
                 break
             case _:
-                print("Invalid command. Please try again.")
+                logger.debug("Invalid command. Please try again.")
 
 if __name__ == "__main__":
     main()
