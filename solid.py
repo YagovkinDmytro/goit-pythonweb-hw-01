@@ -1,14 +1,10 @@
 from abc import ABC, abstractmethod
-import logging
+import logging.config
+from logging_config import LOGGING_CONFIG
 
+
+logging.config.dictConfig(LOGGING_CONFIG)
 logger = logging.getLogger('solid')
-logger.setLevel(logging.DEBUG)
-cons_log = logging.StreamHandler()
-cons_log.setLevel(logging.DEBUG)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-cons_log.setFormatter(formatter)
-logger.addHandler(cons_log)
-
 class Book:
     def __init__(self, title, author, year):
         self.title = title

@@ -1,11 +1,10 @@
 from abc import ABC, abstractmethod
-import logging
 import logging.config
 from logging_config import LOGGING_CONFIG
 
 
 logging.config.dictConfig(LOGGING_CONFIG)
-logger = logging.getLogger('solid')
+logger = logging.getLogger('pattern_factory')
 
 class Vehicle(ABC):
     @abstractmethod

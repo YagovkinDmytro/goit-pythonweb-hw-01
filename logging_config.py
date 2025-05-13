@@ -12,9 +12,16 @@ LOGGING_CONFIG = {
             'level': 'DEBUG',
             'formatter': 'detailed',
         },
-        'file': {
+        'file_solid': {
             'class': 'logging.FileHandler',
-            'filename': 'app_pattern_factory.log',
+            'filename': 'file_solid.log',
+            'mode': 'a',
+            'level': 'DEBUG',
+            'formatter': 'detailed',
+        },
+        'file_pattern_factory': {
+            'class': 'logging.FileHandler',
+            'filename': 'file_pattern_factory.log',
             'mode': 'a',
             'level': 'DEBUG',
             'formatter': 'detailed',
@@ -22,7 +29,12 @@ LOGGING_CONFIG = {
     },
     'loggers': {
         'solid': {
-            'handlers': ['console', 'file'],
+            'handlers': ['console', 'file_solid'],
+            'level': 'DEBUG',
+            'propagate': False
+        },
+        'pattern_factory': {
+            'handlers': ['console', 'file_pattern_factory'],
             'level': 'DEBUG',
             'propagate': False
         },
